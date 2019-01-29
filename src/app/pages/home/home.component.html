@@ -1,15 +1,55 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened class="drawer">
+<div class="container">
+  <div mode="side" opened class="drawer">
     
     <div class="auth-message">
         <span>Vous devez être authentifié pour pouvoir accéder aux quêtes.</span>
         <button mat-stroked-button color="primary">Log in</button>        
     </div>
     
-  </mat-drawer>
+  </div>
   
   
-  <mat-drawer-content class="main-content">
-    Pas encore de contenu ! :(
-  </mat-drawer-content>
-</mat-drawer-container>
+  <div class="main-content">
+    
+    <mat-card id="quest-info">
+
+      <mat-form-field>
+        <input matInput placeholder="Nom de la quête">
+      </mat-form-field>
+
+      <!-- Texte du début -->
+      <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+        <mat-label>Couleur de base (début)</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let color of colors; let i = index" [value]="color.code"><div [style.background]="color.code" class="color"></div><span>{{ color.name }}</span></mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+        <mat-label>Texte de début</mat-label>
+        <textarea matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field> 
+     
+      <!-- Texte de fin -->
+      <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+        <mat-label>Couleur de base (fin)</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let color of colors" value="primary"><div [style.background]="color.code" class="color"></div><span>{{ color.name }}</span></mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+        <mat-label>Texte de fin</mat-label>
+        <textarea matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="5"></textarea>  
+      </mat-form-field> 
+      
+    </mat-card>
+
+  </div>
+</div>
