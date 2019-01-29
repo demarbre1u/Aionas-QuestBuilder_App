@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  colors: any[] = [
+    {name: "Noir", code: "black"},
+    {name: "Rouge", code: "red"},
+    {name: "Bleu", code: "blue"},
+    {name: "Vert", code: "lightgreen"},
+  ]
+
   constructor() { }
 
   ngOnInit() {
