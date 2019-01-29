@@ -24,14 +24,29 @@
           <mat-option *ngFor="let color of colors; let i = index" [value]="color.code"><div [style.background]="color.code" class="color"></div><span>{{ color.name }}</span></mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field [floatLabel]=" 'always' " appearance="outline">
-        <mat-label>Texte de début</mat-label>
-        <textarea matInput
-          cdkTextareaAutosize
-          #autosize="cdkTextareaAutosize"
-          cdkAutosizeMinRows="2"
-          cdkAutosizeMaxRows="5"></textarea>
-      </mat-form-field> 
+      <span class="info-debut">
+
+        <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+          <mat-label>Texte de début</mat-label>
+          <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="4"
+            cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field> 
+
+        <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+          <mat-label>Aperçu</mat-label>
+          <textarea matInput
+            disabled
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="4"
+            cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field> 
+
+      </span>
+      
      
       <!-- Texte de fin -->
       <mat-form-field [floatLabel]=" 'always' " appearance="outline">
@@ -40,14 +55,29 @@
           <mat-option *ngFor="let color of colors" value="primary"><div [style.background]="color.code" class="color"></div><span>{{ color.name }}</span></mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field [floatLabel]=" 'always' " appearance="outline">
-        <mat-label>Texte de fin</mat-label>
-        <textarea matInput
-          cdkTextareaAutosize
-          #autosize="cdkTextareaAutosize"
-          cdkAutosizeMinRows="2"
-          cdkAutosizeMaxRows="5"></textarea>  
-      </mat-form-field> 
+      <span class="info-debut">
+      
+        <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+          <mat-label>Texte de fin</mat-label>
+          <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="4"
+            cdkAutosizeMaxRows="5"></textarea>  
+        </mat-form-field> 
+      
+        <mat-form-field [floatLabel]=" 'always' " appearance="outline">
+          <mat-label>Aperçu</mat-label>
+          <textarea matInput
+            disabled
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="4"
+            cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field> 
+
+      </span>
+      
       
     </mat-card>
 

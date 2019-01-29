@@ -55,6 +55,15 @@
     border-radius: 2px;
 }
 
+.info-debut {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-debut > * {
+    width: 49.5%;
+}
+
 mat-form-field.mat-form-field {
     font-size: 14px;
 }
