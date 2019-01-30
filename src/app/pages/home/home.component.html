@@ -18,7 +18,7 @@
       </mat-form-field>
 
       <!-- Texte du début -->
-      <span class="info-debut">
+      <span class="info">
         <mat-form-field [floatLabel]=" 'always' " appearance="outline">
           <mat-label>Texte de début</mat-label>
           <textarea matInput
@@ -29,29 +29,23 @@
             cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field> 
 
-        <div #apercuDebut [innerHTML]="htmlDebut" id="apercu-debut"></div>
+        <div #apercuDebut class="apercu color-0" [innerHTML]="htmlDebut | safeHtml"></div>
       </span>
       
      
       <!-- Texte de fin -->
-      <span class="info-debut">
+      <span class="info">
         <mat-form-field [floatLabel]=" 'always' " appearance="outline">
           <mat-label>Texte de fin</mat-label>
           <textarea matInput
+            (input)="setApercuFin()"
+            #texteFin
             cdkTextareaAutosize
             cdkAutosizeMinRows="5"
             cdkAutosizeMaxRows="5"></textarea>  
         </mat-form-field> 
       
-        <mat-form-field [floatLabel]=" 'always' " appearance="outline">
-          <mat-label>Aperçu</mat-label>
-          <textarea matInput
-            disabled
-            cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize"
-            cdkAutosizeMinRows="4"
-            cdkAutosizeMaxRows="5"></textarea>
-        </mat-form-field>
+        <div #apercuFin class="apercu color-0" [innerHTML]="htmlFin | safeHtml"></div>
       </span>
       
     </mat-card>

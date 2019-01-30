@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -8,41 +9,70 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   colors: any[] = [
-    {name: "Noir", code: "#000000"},
-    {name: "Bleu foncé", code: "#00002A"},
-    {name: "Vert foncé", code: "#002A00"},
-    {name: "Bleu aqua", code: "#002A2A"},
-    {name: "Rouge foncé", code: "#2A0000"},
-    {name: "Violet foncé", code: "#2A002A"},
-    {name: "Or", code: "#2A2A00"},
-    {name: "Gris", code: "#2A2A2A"},
-    {name: "Gris foncé", code: "#151515"},
-    {name: "Bleu", code: "#15153F"},
-    {name: "Aqua", code: "#153F3F"},
-    {name: "Noir", code: "#3F3F3F"},
-    {name: "Rouge", code: "#3F1515"},
-    {name: "Violet clair", code: "#3F153F"},
-    {name: "Jaune", code: "#3F3F15"},
-    {name: "Blanc", code: "#3F3F3F"},
+    {code: '&0', name: "Noir", class: "color-0"},
+    {code: '&1', name: "Bleu foncé", class: "color-1"},
+    {code: '&2', name: "Vert foncé", class: "color-2"},
+    {code: '&3', name: "Bleu aqua", class: "color-3"},
+    {code: '&4', name: "Rouge foncé", class: "color-4"},
+    {code: '&5', name: "Violet foncé", class: "color-5"},
+    {code: '&6', name: "Or", class: "color-6"},
+    {code: '&7', name: "Gris", class: "color-7"},
+    {code: '&8', name: "Gris foncé", class: "color-8"},
+    {code: '&9', name: "Bleu", class: "color-9"},
+    {code: '&a', name: "Aqua", class: "color-a"},
+    {code: '&b', name: "Noir", class: "color-b"},
+    {code: '&c', name: "Rouge", class: "color-c"},
+    {code: '&d', name: "Violet clair", class: "color-d"},
+    {code: '&e', name: "Jaune", class: "color-e"},
+    {code: '&f', name: "Blanc", class: "color-f"},
   ]
 
   @ViewChild('apercuDebut') apercuDebut: ElementRef
   @ViewChild('texteDebut') texteDebut: ElementRef
-
   htmlDebut: string = ''
 
-  constructor() { }
+  @ViewChild('apercuFin') apercuFin: ElementRef
+  @ViewChild('texteFin') texteFin: ElementRef
+  htmlFin: string = ''
 
-  ngOnInit() {
-    console.log(this.texteDebut)
-  }
+
+  constructor(private sanitizer: DomSanitizer) { }
+
+  ngOnInit() { }
 
   setApercuDebut() {  
-    let texte = this.texteDebut.nativeElement.value
+    let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.texteDebut.nativeElement.value)
+    let regexColorCode = /(&[a-f0-9]).*/
 
-    console.log(texte)
+    let res = texte.match(regexColorCode)
+    while(res !== null) 
+    {
+      let colorClass = this.colors.filter(elem => elem.code === res[1]).length === 0 ? 'color-0' : this.colors.filter(elem => elem.code === res[1])[0].class
+
+      texte = texte.replace(res[1], `<span class="color ${ colorClass }">`)
+      texte += '</span>'
+
+      res = texte.match(regexColorCode)
+    }
 
     this.htmlDebut = texte
   }
 
+  setApercuFin() {  
+    let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.texteFin.nativeElement.value)
+    let regexColorCode = /(&[a-f0-9]).*/
+
+    let res = texte.match(regexColorCode)
+    while(res !== null) 
+    {
+      let colorClass = this.colors.filter(elem => elem.code === res[1]).length === 0 ? 'color-0' : this.colors.filter(elem => elem.code === res[1])[0].class
+
+      texte = texte.replace(res[1], `<span class="color ${ colorClass }">`)
+      texte += '</span>'
+
+      res = texte.match(regexColorCode)
+    }
+
+    this.htmlFin = texte
+  }
 }

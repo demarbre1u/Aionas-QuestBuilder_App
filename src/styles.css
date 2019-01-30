@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-0 { color: #000000; text-shadow: 1px 1px #000000; }
+.color-1 { color: #0000AA; text-shadow: 1px 1px #00002A; }
+.color-2 { color: #00AA00; text-shadow: 1px 1px #002A00; }
+.color-3 { color: #00AAAA; text-shadow: 1px 1px #002A2A;  }
+.color-4 { color: #AA0000; text-shadow: 1px 1px #2A0000;  }
+.color-5 { color: #AA00AA; text-shadow: 1px 1px #2A002A;  }
+.color-6 { color: #FFAA00; text-shadow: 1px 1px #2A2A00;  }
+.color-7 { color: #AAAAAA; text-shadow: 1px 1px #2A2A2A;  }
+.color-8 { color: #555555; text-shadow: 1px 1px #151515;  }
+.color-9 { color: #5555FF; text-shadow: 1px 1px #15153F;  }
+.color-a { color: #55FF55; text-shadow: 1px 1px #153F15;  }
+.color-b { color: #55FFFF; text-shadow: 1px 1px #153F3F;  }
+.color-c { color: #FF5555; text-shadow: 1px 1px #3F1515;  }
+.color-d { color: #FF55FF; text-shadow: 1px 1px #3F153F;  }
+.color-e { color: #FFFF55; text-shadow: 1px 1px #3F3F15;  }
+.color-f { color: #FFFFFF; text-shadow: 1px 1px #3F3F3F;  }
