@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -26,9 +26,23 @@ export class HomeComponent implements OnInit {
     {name: "Blanc", code: "#3F3F3F"},
   ]
 
+  @ViewChild('apercuDebut') apercuDebut: ElementRef
+  @ViewChild('texteDebut') texteDebut: ElementRef
+
+  htmlDebut: string = ''
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.texteDebut)
+  }
+
+  setApercuDebut() {  
+    let texte = this.texteDebut.nativeElement.value
+
+    console.log(texte)
+
+    this.htmlDebut = texte
   }
 
 }

@@ -64,6 +64,16 @@
     width: 49.5%;
 }
 
+#apercu-debut {
+    margin: 5px 5px 20px 10px;
+    word-break: break-all;
+
+    height: 110px;
+    font-size: 14px;
+
+    overflow-y: auto;
+}
+
 mat-form-field.mat-form-field {
     font-size: 14px;
 }
