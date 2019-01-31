@@ -14,38 +14,38 @@
     <mat-card id="quest-info">
 
       <mat-form-field>
-        <input matInput placeholder="Nom de la quête">
+        <input matInput [value]="questName" placeholder="Nom de la quête">
       </mat-form-field>
 
-      <!-- Texte du début -->
+      <!-- Start text -->
       <span class="info">
         <mat-form-field [floatLabel]=" 'always' " appearance="outline">
           <mat-label>Texte de début</mat-label>
           <textarea matInput
-            (input)="setApercuDebut()"
-            #texteDebut
+            (input)="setStartPreview()"
+            #textStart
             cdkTextareaAutosize
             cdkAutosizeMinRows="5"
             cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field> 
 
-        <div #apercuDebut class="apercu color-0" [innerHTML]="htmlDebut | safeHtml"></div>
+        <div #apercuDebut class="apercu color-0" [innerHTML]="htmlStart | safeHtml"></div>
       </span>
       
      
-      <!-- Texte de fin -->
+      <!-- End text -->
       <span class="info">
         <mat-form-field [floatLabel]=" 'always' " appearance="outline">
           <mat-label>Texte de fin</mat-label>
           <textarea matInput
-            (input)="setApercuFin()"
-            #texteFin
+            (input)="setEndPreview()"
+            #textEnd
             cdkTextareaAutosize
             cdkAutosizeMinRows="5"
             cdkAutosizeMaxRows="5"></textarea>  
         </mat-form-field> 
       
-        <div #apercuFin class="apercu color-0" [innerHTML]="htmlFin | safeHtml"></div>
+        <div #apercuFin class="apercu color-0" [innerHTML]="htmlEnd | safeHtml"></div>
       </span>
       
     </mat-card>

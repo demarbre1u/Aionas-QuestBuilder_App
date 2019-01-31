@@ -27,39 +27,34 @@ export class HomeComponent implements OnInit {
     {code: '&f', name: "Blanc", class: "color-f"},
   ]
 
-  @ViewChild('apercuDebut') apercuDebut: ElementRef
-  @ViewChild('texteDebut') texteDebut: ElementRef
-  htmlDebut: string = ''
+  @ViewChild('textStart') textStart: ElementRef
+  htmlStart: string = ''
 
-  @ViewChild('apercuFin') apercuFin: ElementRef
-  @ViewChild('texteFin') texteFin: ElementRef
-  htmlFin: string = ''
+  @ViewChild('textEnd') textEnd: ElementRef
+  htmlEnd: string = ''
 
+  questName: string = ''
 
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() { }
 
-  setApercuDebut() {  
-    let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.texteDebut.nativeElement.value)
-    let regexColorCode = /(&[a-f0-9]).*/
+  // Sets up the colored start text in the preview block
+  setStartPreview() {  
+    let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.textStart.nativeElement.value)
 
-    let res = texte.match(regexColorCode)
-    while(res !== null) 
-    {
-      let colorClass = this.colors.filter(elem => elem.code === res[1]).length === 0 ? 'color-0' : this.colors.filter(elem => elem.code === res[1])[0].class
-
-      texte = texte.replace(res[1], `<span class="color ${ colorClass }">`)
-      texte += '</span>'
-
-      res = texte.match(regexColorCode)
-    }
-
-    this.htmlDebut = texte
+    this.htmlStart = this.textToHtml(texte) 
   }
 
-  setApercuFin() {  
-    let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.texteFin.nativeElement.value)
+  // Sets up the colored end text in the preview block
+  setEndPreview() {  
+    let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.textEnd.nativeElement.value)
+
+    this.htmlEnd = this.textToHtml(texte) 
+  }
+
+  // Replaces &* code in a given text with <span> elements to aapply the right color to the text 
+  private textToHtml(texte) {
     let regexColorCode = /(&[a-f0-9]).*/
 
     let res = texte.match(regexColorCode)
@@ -73,6 +68,6 @@ export class HomeComponent implements OnInit {
       res = texte.match(regexColorCode)
     }
 
-    this.htmlFin = texte
+    return texte
   }
 }
