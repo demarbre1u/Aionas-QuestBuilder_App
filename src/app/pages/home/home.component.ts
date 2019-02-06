@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
+  // Tableau des différents code couleur avec leur classe associées
   colors: any[] = [
     {code: '&0', name: "Noir", class: "color-0"},
     {code: '&1', name: "Bleu foncé", class: "color-1"},
@@ -27,12 +28,20 @@ export class HomeComponent implements OnInit {
     {code: '&f', name: "Blanc", class: "color-f"},
   ]
 
+  // Element et HTML du texte de début d'une quête
   @ViewChild('textStart') textStart: ElementRef
   htmlStart: string = ''
 
+  // Element et HTML du texte de fin d'une quête
   @ViewChild('textEnd') textEnd: ElementRef
   htmlEnd: string = ''
 
+  // Point de départ
+  @ViewChild('startingPointElem') startingPointElem: ElementRef
+  startingPoint: string = ''
+
+  // Nom de la quête
+  @ViewChild('questNameElem') questNameElem: ElementRef
   questName: string = ''
 
   constructor(private sanitizer: DomSanitizer) { }
@@ -51,6 +60,18 @@ export class HomeComponent implements OnInit {
     let texte = this.sanitizer.sanitize(SecurityContext.NONE, this.textEnd.nativeElement.value)
 
     this.htmlEnd = this.textToHtml(texte) 
+  }
+
+  // Récupère les données d'une quête et les envoie à l'API pour les sauvegarder
+  saveQuest() {
+    let quest: any = {}
+
+    quest.name = this.questNameElem.nativeElement.value
+    quest.startingPoint = this.startingPointElem.nativeElement.value
+    quest.textStart = this.textStart.nativeElement.value
+    quest.textEnd = this.textEnd.nativeElement.value
+
+    console.log(quest)
   }
 
   // Replaces &* code in a given text with <span> elements to aapply the right color to the text 

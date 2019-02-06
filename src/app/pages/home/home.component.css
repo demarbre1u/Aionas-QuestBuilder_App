@@ -40,8 +40,8 @@
     margin: 20px;
 }   
 
-#quest-info {
-    margin: 20px;
+.card {
+    margin: 10px 20px;
     padding: 10px 20px;
 
     display: flex;
@@ -58,13 +58,18 @@
     border-radius: 2px;
 }
 
-.info {
+.column {
     display: flex;
     justify-content: space-between;
 }
 
-.info > * {
+.column > * {
     width: 49.5%;
+}
+
+.card-title {
+    color: #2c3e50;
+    text-align: center;
 }
 
 .apercu {
@@ -88,9 +93,23 @@ mat-form-field.mat-form-field {
     font-size: 16px;
 }
 
-#save-btn {
-    margin: 5px 20px;
-    padding: 10px;
+#btn-block {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 20px;
+    margin-top: 10px;
+}
 
-    background-color: #2c3e50 !important;
+.custom-btn {
+    margin-right: 20px;
+    padding: 10px;
+    width: 150px;
+}
+
+#new-step-btn {
+    background-color: #2980b9 !important;
+}
+
+#save-btn {
+    background-color: #16a085 !important;
 }
